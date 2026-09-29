@@ -1,0 +1,46 @@
+﻿=========================================================
+ LAB 03-04 - NAP CHONG (OVERLOADING)
+ Ma sinh vien: 202418947 - Ho ten: Dang Ngoc Minh
+ Chu de: Nhom du an va nhan su
+=========================================================
+
+[3] Sau khi tang luong co dinh +3.000.000:
+[Employee] E02 - Tran Thi Binh | Lương CB: 18,000,000 VND
+
+[4] Sau khi tang luong 10%:
+[SoftwareEngineer] S02 - Pham Thi Dung | Lương CB: 24,200,000 VND | Ngôn ngữ: Java | Phụ cấp: 5,000,000 VND | Chi phí tháng: 29,200,000 VND
+
+[6] Them E01 vao nhom: True
+[7] Them S01 va dat lam truong nhom: True
+[8] Them lai E01 (da ton tai): False
+
+[9] Danh sach nhom (da hinh):
+=== Nhóm PRJ01 - He thong quan ly ban hang ===
+Trưởng nhóm: Le Van Cuong (S01)
+[Employee] E01 - Nguyen Van An | Lương CB: 0 VND
+[SoftwareEngineer] S01 - Le Van Cuong | Lương CB: 0 VND | Ngôn ngữ: C# | Phụ cấp: 0 VND | Chi phí tháng: 0 VND
+
+[10] Tong chi phi nhan su hang thang: 0 VND
+[11] Xoa truong nhom S01: False (tu choi vi S01 dang la truong nhom)
+[12a] Doi truong nhom sang E02: Tran Thi Binh
+[12b] Xoa S01 (truong nhom cu): True
+
+[13] Nhom 3 them lai E01 (da o nhom 1): True
+=== Nhóm PRJ03 - Website cong ty ===
+Trưởng nhóm: (chưa có)
+[Employee] E01 - Nguyen Van An | Lương CB: 0 VND
+[SoftwareEngineer] S99 - Nguyen Thi Tam | Lương CB: 0 VND | Ngôn ngữ: Python | Phụ cấp: 0 VND | Chi phí tháng: 0 VND
+
+[14] Nhom 3 va nhan su tam thoi nam trong khoi cuc bo, chuan bi huy...
+[DESTRUCTOR] ~ProjectTeam(): PRJ03 bị thu hồi (nhân sự vẫn tồn tại).
+[DESTRUCTOR] ~SoftwareEngineer(): S99 - Nguyen Thi Tam bị thu hồi.
+[DESTRUCTOR] ~Employee(): S99 - Nguyen Thi Tam bị thu hồi.
+
+[15] Sau khi nhom 3 bi huy, E01 van ton tai:
+[Employee] E01 - Nguyen Van An | Lương CB: 0 VND
+=== Nhóm PRJ01 - He thong quan ly ban hang ===
+Trưởng nhóm: Tran Thi Binh (E02)
+[Employee] E01 - Nguyen Van An | Lương CB: 0 VND
+[Employee] E02 - Tran Thi Binh | Lương CB: 18,000,000 VND
+
+KET THUC CHUONG TRINH (GC se thu hoi cac doi tuong con lai).

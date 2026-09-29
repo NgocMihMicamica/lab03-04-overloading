@@ -1,0 +1,267 @@
+
+===== PAGE 1 =====
+2. NHÓM DỰ ÁN VÀ NHÂN SỰ
+
+Nghiệp vụ
+
+Một đơn vị cần quản lý các nhóm dự án. Mỗi nhân sự có thể tồn tại độc lập với dự án và có
+
+thể được phân công vào nhiều dự án khác nhau.
+
+Có hai loại nhân sự:
+
+ Nhân sự thông thường.
+
+ Kỹ sư phần mềm có thêm ngôn ngữ lập trình chính.
+
+Mỗi nhóm có một trưởng nhóm và danh sách thành viên. Trưởng nhóm cũng là một nhân
+
+sự, nhưng không được xuất hiện lần thứ hai trong danh sách thành viên.
+
+A: Phân tích và thiết kế
+
+A1. Xác định các lớp
+
+Thiết kế tối thiểu ba lớp:
+
+ Employee
+
+ SoftwareEngineer
+
+ ProjectTeam
+
+Với mỗi lớp, mô tả:
+
+1. Trách nhiệm.
+
+2. Thuộc tính.
+
+3. Constructor.
+
+4. Phương thức.
+
+5. Quan hệ với các lớp khác. – Vẽ sơ đồ lớp
+
+Bất biến của mô hình
+
+Ít nhất bốn bất biến cần được duy trì. Tối thiểu gồm:
+
+ Mã nhân sự không rỗng.
+
+===== PAGE 2 =====
+ Lương cơ bản không âm.
+
+ Không có hai thành viên cùng mã trong một nhóm.
+
+ Trưởng nhóm phải thuộc danh sách nhân sự được phân công cho dự án.
+
+ Một nhân sự không xuất hiện hai lần trong cùng nhóm.
+
+B: Cài đặt lập trình
+
+Lớp Employee
+
+Thuộc tính
+
+ id: mã nhân sự.
+
+ fullName: họ tên.
+
+ baseSalary: lương cơ bản.
+
+Constructor
+
+Cài đặt ba constructor:
+
+Employee();
+
+Employee(const std::string& id, const std::string& fullName);
+
+Employee(const std::string& id, const std::string& fullName, double
+
+baseSalary);
+
+Giá trị mặc định:
+
+ id = "UNKNOWN"
+
+ fullName = "Unnamed employee"
+
+ baseSalary = 0
+
+Ràng buộc:
+
+ Mã và họ tên không rỗng.
+
+ Lương cơ bản không âm.
+
+Nạp chồng phương thức
+
+Cài đặt hai phiên bản increaseSalary():
+
+void increaseSalary(double amount);
+
+===== PAGE 3 =====
+void increaseSalary(double value, bool byPercentage);
+
+Quy ước:
+
+ Phiên bản thứ nhất tăng một số tiền cố định.
+
+ Nếu byPercentage == true, phiên bản thứ hai tăng theo tỷ lệ phần trăm.
+
+ Nếu byPercentage == false, tăng theo số tiền cố định.
+
+ Giá trị tăng phải dương.
+
+Phương thức khác
+
+ Getter cần thiết.
+
+ calculateMonthlyCost() dưới dạng virtual, mặc định bằng lương cơ bản.
+
+ displayInfo() dưới dạng virtual.
+
+ Destructor virtual và in thông báo quan sát vòng đời.
+
+Lớp SoftwareEngineer
+
+Kế thừa công khai từ Employee.
+
+Thuộc tính bổ sung
+
+ primaryLanguage: ngôn ngữ lập trình chính.
+
+ technicalAllowance: phụ cấp kỹ thuật.
+
+Constructor
+
+Cài đặt hai constructor:
+
+SoftwareEngineer(const std::string& id, const std::string& fullName,
+
+const std::string& primaryLanguage);
+
+SoftwareEngineer(const std::string& id, const std::string& fullName,
+
+double baseSalary, const std::string& primaryLanguage,
+
+double technicalAllowance);
+
+Ràng buộc:
+
+ Ngôn ngữ chính không rỗng.
+
+ Phụ cấp không âm.
+
+===== PAGE 4 =====
+Phương thức
+
+ Ghi đè calculateMonthlyCost() để trả về tổng lương cơ bản và phụ cấp.
+
+ Ghi đè displayInfo().
+
+ Destructor in thông báo.
+
+Lớp ProjectTeam
+
+Thuộc tính
+
+ projectCode: mã dự án.
+
+ projectName: tên dự án.
+
+ Liên kết không sở hữu đến trưởng nhóm.
+
+ Danh sách liên kết không sở hữu đến các thành viên.
+
+Nạp chồng constructor
+
+ProjectTeam(const std::string& projectCode,
+
+const std::string& projectName);
+
+ProjectTeam(const std::string& projectCode,
+
+const std::string& projectName,
+
+Employee& leader);
+
+Constructor thứ nhất tạo nhóm chưa có trưởng nhóm. Constructor thứ hai thiết lập trưởng
+
+nhóm và tự động đưa trưởng nhóm vào danh sách thành viên.
+
+Nạp chồng phương thức addMember()
+
+bool addMember(Employee& employee);
+
+bool addMember(Employee& employee, bool makeLeader);
+
+Quy tắc:
+
+ Không thêm trùng nhân sự.
+
+ Nếu makeLeader == true, nhân sự được thêm và trở thành trưởng nhóm.
+
+ Trưởng nhóm cũ vẫn là thành viên nếu đã có trong nhóm.
+
+Phương thức khác
+
+ removeMember(const std::string& employeeId).
+
+===== PAGE 5 =====
+ changeLeader(Employee& employee).
+
+ contains(const std::string& employeeId).
+
+ calculateTotalMonthlyCost().
+
+ displayTeam().
+
+Ràng buộc:
+
+ Không được xóa trưởng nhóm khi chưa chọn trưởng nhóm thay thế.
+
+ Trưởng nhóm mới phải được thêm vào nhóm nếu chưa phải thành viên.
+
+ Destructor của ProjectTeam chỉ hủy cấu trúc danh sách liên kết nội bộ, không được
+
+hủy các đối tượng Employee.
+
+C: Kiểm thử
+
+Viết chương trình kiểm thử theo kịch bản:
+
+1. Tạo hai Employee bằng hai constructor khác nhau.
+
+2. Tạo hai SoftwareEngineer bằng hai constructor khác nhau.
+
+3. Tăng lương một nhân sự bằng số tiền cố định.
+
+4. Tăng lương một nhân sự khác theo phần trăm.
+
+5. Tạo nhóm dự án không có trưởng nhóm.
+
+6. Thêm một nhân sự vào nhóm bằng addMember(employee).
+
+7. Thêm một kỹ sư bằng addMember(employee, true) để đặt làm trưởng nhóm.
+
+8. Thử thêm lại một thành viên đã tồn tại.
+
+9. Hiển thị danh sách bằng lời gọi đa hình.
+
+10. Tính tổng chi phí nhân sự hằng tháng.
+
+11. Thử xóa trưởng nhóm hiện tại và kiểm tra thao tác bị từ chối.
+
+12. Đổi trưởng nhóm rồi xóa người từng là trưởng nhóm.
+
+13. Tạo một nhóm thứ hai và thêm một nhân sự đã có ở nhóm thứ nhất để chứng minh
+
+quan hệ kết tập nhiều nhóm.
+
+14. Hủy nhóm thứ hai bằng cách kết thúc một khối lệnh cục bộ.
+
+15. Chứng minh nhân sự của nhóm thứ hai vẫn tồn tại sau khi nhóm bị hủy.
+
+Chú ý các trường hợp biên

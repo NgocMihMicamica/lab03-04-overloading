@@ -1,0 +1,14 @@
+bin/
+obj/
+.vs/
+*.user
+
+# Tệp tạm của các script hỗ trợ trong _tools
+_tools/shots/
+_tools/*.log
+_tools/conbuf*.txt
+_tools/go.flag
+_tools/probe*.png
+_tools/pdfx/
+_tools/mingit/
+_tools/MinGit.zip
